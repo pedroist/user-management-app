@@ -11,4 +11,22 @@ export const sampleUserData: User[] = [
     age: 30,
     location: 'Barcelona, Spain'
   },
+  { id: 2,
+    avatar: '',
+    name: 'John Gonzalez',
+    email: 'john.gonzalez@gmail.com',
+    type: 'Frontend',
+    groups: ["Group 2", "Group 3"],
+    age: 26,
+    location: 'London, England'
+  },
+  { id: 3,
+    avatar: '',
+    name: 'Anna Zimmer',
+    email: 'anna.zimmer@gmail.com',
+    type: 'Backend',
+    groups: ["Group 3"],
+    age: 23,
+    location: 'Berlin, Germany'
+  },
 ]
