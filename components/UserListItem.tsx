@@ -1,30 +1,27 @@
-import React from 'react'
+import React, { FC } from 'react'
 import {Card, HStack, Tag, Text } from '@chakra-ui/react'
+import { User } from '../interfaces/user'
 
 interface UserListItemProps {
-
+  user: User
 }
 
-const UserListItem = () => (
+const UserListItem: FC<UserListItemProps> = ({user}) => (
     <Card variant='elevated' direction={'row'} justify={'space-between'} p="10px 20px">
-      <Text mr="2">Pedro Castro</Text>
-      <Text mr="2">pedro.castro@gmail.com</Text>
+      <Text mr="2">{user.name}</Text>
+      <Text mr="2">{user.email}</Text>
       <Tag size={'md'} variant='solid' colorScheme='green'>
-        Frontend
+        {user.type}
       </Tag>
       <HStack>
-        <Tag size={'md'} variant='solid' colorScheme='blue'>
-          Group 1
-        </Tag>
-        <Tag size={'md'} variant='solid' colorScheme='blue'>
-          Group 2
-        </Tag>
-        <Tag size={'md'} variant='solid' colorScheme='blue'>
-          Group 3
-        </Tag>
+        {(user.groups || []).map((group, index) => (
+          <Tag key={index} size={'md'} variant='solid' colorScheme='blue'>
+            {group}
+          </Tag>
+        ))}
       </HStack>
-      <Text>30</Text>
-      <Text>Lisbon, Portugal</Text>
+      <Text>{user.age}</Text>
+      <Text>{user.location}</Text>
     </Card>
 )
 

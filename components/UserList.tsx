@@ -1,15 +1,15 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 import UserListItem from './UserListItem'
-import { User } from '../interfaces'
+import { User } from '../interfaces/user'
 
-type Props = {
-  items: User[]
+interface UserListProps {
+  users: User[]
 }
 
-const UserList = ({ items }: Props) => (
+const UserList: FC<UserListProps> = ({ users }) => (
   <>
-    {items.map((item) => (
-        <UserListItem key={item.id}/>
+    {users.map((user) => (
+        <UserListItem key={user.id} user={user}/>
     ))}
   </>
 )
