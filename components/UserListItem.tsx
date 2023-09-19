@@ -8,8 +8,8 @@ interface UserListItemProps {
 
 const UserListItem: FC<UserListItemProps> = ({user}) => (
     <Card variant='elevated' direction={'row'} justify={'space-between'} p="10px 20px">
-      <Text mr="2">{user.name}</Text>
-      <Text mr="2">{user.email}</Text>
+      <Text>{user.name}</Text>
+      <Text>{user.email}</Text>
       <Tag size={'md'} variant='solid' colorScheme='green'>
         {user.type}
       </Tag>
@@ -20,7 +20,7 @@ const UserListItem: FC<UserListItemProps> = ({user}) => (
           </Tag>
         ))}
       </HStack>
-      <Text>{user.age}</Text>
+      <Text>{user.age} years</Text>
       <Text>{user.location}</Text>
     </Card>
 )
