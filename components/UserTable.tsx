@@ -1,24 +1,24 @@
 import React, { FC } from 'react'
-import UserListItem from './UserListItem'
 import { User } from '../interfaces/user'
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
   TableContainer,
   Tag,
+  IconButton,
 } from '@chakra-ui/react'
+import { FiMoreVertical } from 'react-icons/fi';
 
-interface UserListProps {
+interface UserTableProps {
   users: User[]
 }
 
-const UserList: FC<UserListProps> = ({ users }) => (
+const UserTable: FC<UserTableProps> = ({ users }) => (
   <>
   <TableContainer>
     <Table variant='simple'>
@@ -31,11 +31,12 @@ const UserList: FC<UserListProps> = ({ users }) => (
           <Th>Groups</Th>
           <Th>Age</Th>
           <Th>Location</Th>
+          <Th>Actions</Th>
         </Tr>
       </Thead>
       <Tbody>
         {users.map((user) => (
-          <Tr>
+          <Tr key={user.id}>
             <Td>{user.name}</Td>
             <Td>{user.email}</Td>
             <Td>
@@ -52,6 +53,16 @@ const UserList: FC<UserListProps> = ({ users }) => (
             </Td>
             <Td>{user.age}</Td>
             <Td>{user.location}</Td>
+            <Td>
+              <IconButton
+                aria-label='actions'
+                size='sm'
+                variant='ghost'
+                colorScheme='gray'
+                icon={<FiMoreVertical/>}
+                isRound
+              />
+            </Td>
           </Tr>
         ))}
       </Tbody>
@@ -60,4 +71,4 @@ const UserList: FC<UserListProps> = ({ users }) => (
   </>
 )
 
-export default UserList
+export default UserTable
