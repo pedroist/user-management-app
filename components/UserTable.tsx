@@ -13,17 +13,11 @@ import {
   IconButton,
   useDisclosure,
   Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Flex,
 } from '@chakra-ui/react'
 import { FiMoreVertical } from 'react-icons/fi';
 import { AddUserModal } from './AddUserModal'
+import classes from './UserTable.module.scss'
 
 interface UserTableProps {
   users: User[]
@@ -35,7 +29,7 @@ const UserTable: FC<UserTableProps> = ({ users }) => {
   return(
     <>
       <Flex direction="column" alignItems="flex-end" mb="40px">
-        <Button bg='black' color='white' onClick={onOpen}>Add User +</Button>
+        <Button className={classes.addUserButton} bg='black' color='white' onClick={onOpen}>Add User +</Button>
       </Flex>
       <AddUserModal isOpen={isOpen} onClose={onClose}/>
 
