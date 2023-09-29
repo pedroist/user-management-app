@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { User } from '../interfaces/user'
+import React, { FC, useCallback } from 'react'
+import { User, UserInput } from '../interfaces/user'
 import {
   Table,
   Thead,
@@ -26,12 +26,22 @@ interface UserTableProps {
 const UserTable: FC<UserTableProps> = ({ users }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   
+  const postUser = (userInput: UserInput) => {
+    // TODO: add user to context
+  }
+
+  const onSubmit = useCallback(
+    async(userInput: UserInput) => {
+      postUser(userInput)
+    },
+    [postUser]
+  )
   return(
     <>
       <Flex direction="column" alignItems="flex-end" mb="40px">
         <Button className={classes.addUserButton} bg='black' color='white' onClick={onOpen}>Add User +</Button>
       </Flex>
-      <AddUserModal isOpen={isOpen} onClose={onClose}/>
+      <AddUserModal isOpen={isOpen} onClose={onClose} onSubmit={onSubmit}/>
 
       <TableContainer>
         <Table variant='simple'>

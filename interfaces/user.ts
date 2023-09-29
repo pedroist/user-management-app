@@ -8,3 +8,5 @@ export interface User {
   age: number
   location: string
 }
+
+export type UserInput = Omit<User, 'id'>
