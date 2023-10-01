@@ -9,4 +9,4 @@ export interface User {
   location: string
 }
 
-export type UserInput = Omit<User, 'id'>
+export type UserInput = Omit<User, 'id' | 'groups'>

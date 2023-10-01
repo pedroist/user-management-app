@@ -28,6 +28,7 @@ const UserTable: FC<UserTableProps> = ({ users }) => {
   
   const postUser = (userInput: UserInput) => {
     // TODO: add user to context
+    console.log('Submitted new user:', userInput);
   }
 
   const onSubmit = useCallback(
