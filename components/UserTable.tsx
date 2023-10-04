@@ -18,14 +18,13 @@ import {
 import { FiMoreVertical } from 'react-icons/fi';
 import { AddUserModal } from './AddUserModal'
 import classes from './UserTable.module.scss'
+import { useUsers } from '../context/userContext'
 
-interface UserTableProps {
-  users: User[]
-}
 
-const UserTable: FC<UserTableProps> = ({ users }) => {
+const UserTable: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  
+  const { users } = useUsers();
+
   const postUser = (userInput: UserInput) => {
     // TODO: add user to context
     console.log('Submitted new user:', userInput);
@@ -59,7 +58,7 @@ const UserTable: FC<UserTableProps> = ({ users }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {users.map((user) => (
+            {(users || []).map((user) => (
               <Tr key={user.id}>
                 <Td>{user.name}</Td>
                 <Td>{user.email}</Td>

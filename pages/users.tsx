@@ -5,15 +5,12 @@ import Layout from '../components/Layout'
 import UserTable from '../components/UserTable'
 import { Box, Heading } from '@chakra-ui/react'
 
-interface UsersPageProps {
-  users: User[]
-}
 
-const UsersPage: NextPage<UsersPageProps> = ({ users }) => (
+const UsersPage: NextPage = () => (
   <Layout title="Users List">
     <Heading>Users List</Heading>
     <Box my="40px">
-      <UserTable users={users} />
+      <UserTable/>
     </Box>
   </Layout>
 )
