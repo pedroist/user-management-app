@@ -23,10 +23,10 @@ import { useUsers } from '../context/userContext'
 
 const UserTable: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { users } = useUsers();
+  const { users, addUser } = useUsers();
 
   const postUser = (userInput: UserInput) => {
-    // TODO: add user to context
+    addUser(userInput);
     console.log('Submitted new user:', userInput);
   }
 

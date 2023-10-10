@@ -1,11 +1,12 @@
 import React, { FC, createContext, useContext, useState } from 'react';
-import { User } from '../interfaces/user'
+import { User, UserInput } from '../interfaces/user'
+import { generateRandomId } from '../utils/utils'
 
 interface UserContextProps {
     users: User[];
     initialUsers: User[];
-    addUser: (user: User) => void;
-    deleteUser: (id: number) => void;
+    addUser: (user: UserInput) => void;
+    deleteUser: (id: string) => void;
 }
 
 const UserContext = createContext<UserContextProps | null>(null);
@@ -22,11 +23,12 @@ export const useUsers = () => {
 export const UserProvider: FC<{ initialUsers: User[] }> = ({ children, initialUsers }) => {
     const [users, setUsers] = useState<User[]>(initialUsers);
     
-    const addUser = (user: User) => {
-      setUsers([...users, user]);
+    const addUser = (user: UserInput) => {
+      const id = generateRandomId()
+      setUsers([...users, {...user, id, groups: []}]);
     };
     
-    const deleteUser = (id: number) => {
+    const deleteUser = (id: string) => {
       setUsers(users.filter(user => user.id !== id));
     };
   

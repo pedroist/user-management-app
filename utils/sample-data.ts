@@ -2,7 +2,7 @@ import { User } from '../interfaces/user'
 
 /** Dummy user data. */
 export const sampleUserData: User[] = [
-  { id: 1,
+  { id: '1',
     avatar: '',
     name: 'Pedro Castro',
     email: 'pedro.castro@gmail.com',
@@ -11,7 +11,7 @@ export const sampleUserData: User[] = [
     age: 30,
     location: 'Barcelona, Spain'
   },
-  { id: 2,
+  { id: '2',
     avatar: '',
     name: 'John Gonzalez',
     email: 'john.gonzalez@gmail.com',
@@ -20,7 +20,7 @@ export const sampleUserData: User[] = [
     age: 26,
     location: 'London, England'
   },
-  { id: 3,
+  { id: '3',
     avatar: '',
     name: 'Anna Zimmer',
     email: 'anna.zimmer@gmail.com',
