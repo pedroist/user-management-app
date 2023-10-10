@@ -1,14 +1,19 @@
 import { ChakraProvider } from '@chakra-ui/react'
+import { AppProps } from 'next/app';
 import { UserProvider } from '../context/userContext'
+import { User } from '../interfaces/user'
+import { sampleUserData } from '../utils/sample-data'
 
-function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps}: AppProps) {
+  const users: User[] = sampleUserData
+
   return (
     <ChakraProvider>
-      <UserProvider>
+      <UserProvider initialUsers={users}>
         <Component {...pageProps} />
       </UserProvider>
     </ChakraProvider>
   )
 }
 
-export default App
+export default MyApp

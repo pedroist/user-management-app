@@ -1,14 +1,16 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { FC, createContext, useContext, useState } from 'react';
 import { User } from '../interfaces/user'
 
 interface UserContextProps {
     users: User[];
+    initialUsers: User[];
     addUser: (user: User) => void;
     deleteUser: (id: number) => void;
 }
 
 const UserContext = createContext<UserContextProps | null>(null);
 
+// Hook to get users from context
 export const useUsers = () => {
     const context = useContext(UserContext);
     if (!context) {
@@ -17,18 +19,8 @@ export const useUsers = () => {
     return context;
 };
 
-export const UserProvider: React.FC = ({ children }) => {
-    const [users, setUsers] = useState<User[]>([
-      { id: 2,
-        avatar: '',
-        name: 'John Gonzalez',
-        email: 'john.gonzalez@gmail.com',
-        type: 'Frontend',
-        groups: ["Group 2", "Group 3"],
-        age: 26,
-        location: 'London, England'
-      }
-    ]);
+export const UserProvider: FC<{ initialUsers: User[] }> = ({ children, initialUsers }) => {
+    const [users, setUsers] = useState<User[]>(initialUsers);
     
     const addUser = (user: User) => {
       setUsers([...users, user]);
@@ -39,7 +31,7 @@ export const UserProvider: React.FC = ({ children }) => {
     };
   
     return (
-      <UserContext.Provider value={{ users, addUser, deleteUser }}>
+      <UserContext.Provider value={{ users, initialUsers, addUser, deleteUser }}>
         {children}
       </UserContext.Provider>
     );
