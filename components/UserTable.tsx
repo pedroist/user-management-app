@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react'
-import { User, UserInput } from '../interfaces/user'
+import {UserInput } from '../interfaces/user'
 import {
   Table,
   Thead,
@@ -25,17 +25,17 @@ const UserTable: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { users, addUser } = useUsers();
 
-  const postUser = (userInput: UserInput) => {
-    addUser(userInput);
-    console.log('Submitted new user:', userInput);
-  }
-
   const onSubmit = useCallback(
-    async(userInput: UserInput) => {
-      postUser(userInput)
+    async (userInput: UserInput) => {
+      const postUser = (userInput: UserInput) => {
+        addUser(userInput);
+        console.log('Submitted new user:', userInput);
+      }
+      postUser(userInput);
     },
-    [postUser]
-  )
+    [addUser]
+  );
+  
   return(
     <>
       <Flex direction="column" alignItems="flex-end" mb="40px">

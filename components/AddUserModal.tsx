@@ -1,6 +1,6 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Input, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react'
 import React, { FC, useCallback } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { UserInput } from '../interfaces/user'
 
@@ -16,17 +16,16 @@ const validationSchema = Yup.object().shape({
 interface AddUserModalProps {
     isOpen: boolean
     onClose: () => void
-    onSubmit: (userInput: UserInput) => void
+    onSubmit: (userInput: UserInput) => void // eslint-disable-line no-unused-vars
 }
 
 export const AddUserModal: FC<AddUserModalProps> = ({isOpen, onClose, onSubmit}) => {
     const onSubmitForm = useCallback(
-        async(values, { resetForm }) => {
+        async(values) => {
             onSubmit(values);
-            resetForm();
             onClose();
         },
-        [onSubmit]
+        [onSubmit, onClose]
     );
 
     const initialValues = {
