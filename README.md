@@ -2,6 +2,9 @@
 
 This is a really simple project that shows the usage of Next.js with TypeScript.
 
+# Next ESLint
+npm run lint
+
 ## Deploy your own
 
 Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)

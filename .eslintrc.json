@@ -1,20 +1,13 @@
 {
-  "root": true,
-  "parser": "@babel/eslint-parser",
-  "plugins": ["react", "react-hooks", "next"],
+  "plugins": ["react", "react-hooks"],
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:next/recommended"
+    "plugin:react-hooks/recommended"
   ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "rules": {
     // Add your custom rules here
+    "react/react-in-jsx-scope": "off"
   }
 }
