@@ -92,7 +92,7 @@ const UserTable: FC = () => {
                     />
                     <MenuList>
                       <MenuItem>Add to a Group</MenuItem>
-                      <MenuItem>Delete</MenuItem>
+                      <MenuItem onClick={() => deleteUser(user.id)}>Delete</MenuItem>
                     </MenuList>
                   </Menu>
                 </Td>
