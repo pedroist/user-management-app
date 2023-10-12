@@ -27,7 +27,7 @@ import { useUsers } from '../context/userContext'
 
 const UserTable: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { users, addUser } = useUsers();
+  const { users, addUser, deleteUser } = useUsers();
 
   const onSubmit = useCallback(
     async (userInput: UserInput) => {
@@ -82,16 +82,14 @@ const UserTable: FC = () => {
                 <Td>{user.location}</Td>
                 <Td>
                   <Menu>
-                    <MenuButton className={classes.menuButton}>
-                      <IconButton
-                        aria-label='actions'
-                        size='sm'
-                        variant='ghost'
-                        colorScheme='gray'
-                        icon={<FiMoreVertical/>}
-                        isRound
-                      />
-                    </MenuButton>
+                    <MenuButton className={classes.menuButton} as={IconButton}
+                      aria-label='actions'
+                      size='sm'
+                      variant='ghost'
+                      colorScheme='gray'
+                      icon={<FiMoreVertical/>}
+                      isRound
+                    />
                     <MenuList>
                       <MenuItem>Add to a Group</MenuItem>
                       <MenuItem>Delete</MenuItem>
