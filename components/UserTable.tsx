@@ -14,6 +14,10 @@ import {
   useDisclosure,
   Button,
   Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
 } from '@chakra-ui/react'
 import { FiMoreVertical } from 'react-icons/fi';
 import { AddUserModal } from './AddUserModal'
@@ -77,14 +81,22 @@ const UserTable: FC = () => {
                 <Td>{user.age}</Td>
                 <Td>{user.location}</Td>
                 <Td>
-                  <IconButton
-                    aria-label='actions'
-                    size='sm'
-                    variant='ghost'
-                    colorScheme='gray'
-                    icon={<FiMoreVertical/>}
-                    isRound
-                  />
+                  <Menu>
+                    <MenuButton className={classes.menuButton}>
+                      <IconButton
+                        aria-label='actions'
+                        size='sm'
+                        variant='ghost'
+                        colorScheme='gray'
+                        icon={<FiMoreVertical/>}
+                        isRound
+                      />
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>Add to a Group</MenuItem>
+                      <MenuItem>Delete</MenuItem>
+                    </MenuList>
+                  </Menu>
                 </Td>
               </Tr>
             ))}
