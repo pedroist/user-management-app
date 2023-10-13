@@ -1,5 +1,4 @@
-import React, { FC, useCallback } from 'react'
-import { UserInput } from '../interfaces/user'
+import React, { FC } from 'react'
 import {
   Table,
   Thead,
@@ -11,7 +10,6 @@ import {
   TableContainer,
   Tag,
   IconButton,
-  useDisclosure,
   Menu,
   MenuButton,
   MenuItem,
