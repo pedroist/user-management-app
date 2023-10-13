@@ -20,9 +20,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
         <Link href="/users">Users</Link> | <Link href="/groups">Groups</Link>
       </nav>
     </header>
-    <Box m='30px 60px'>
-      {children}
-    </Box>
+    <Box m="30px 60px">{children}</Box>
   </div>
 )
 

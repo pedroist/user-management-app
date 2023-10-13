@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react'
-import {UserInput } from '../interfaces/user'
+import { UserInput } from '../interfaces/user'
 import {
   Table,
   Thead,
@@ -17,19 +17,20 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react'
-import { FiMoreVertical } from 'react-icons/fi';
+import { FiMoreVertical } from 'react-icons/fi'
 import classes from './UserTable.module.scss'
 import { useUsers } from '../context/userContext'
 
-
 const GroupSection: FC = () => {
-  const { users, deleteUser } = useUsers();
-  
-  return(
+  const { users, deleteUser } = useUsers()
+
+  return (
     <>
       <TableContainer>
-        <Table variant='simple'>
-          <TableCaption>List of users of a specific group and respective details</TableCaption>
+        <Table variant="simple">
+          <TableCaption>
+            List of users of a specific group and respective details
+          </TableCaption>
           <Thead>
             <Tr>
               <Th>Name</Th>
@@ -47,13 +48,19 @@ const GroupSection: FC = () => {
                 <Td>{user.name}</Td>
                 <Td>{user.email}</Td>
                 <Td>
-                  <Tag size={'md'} variant='solid' colorScheme='green'>
+                  <Tag size={'md'} variant="solid" colorScheme="green">
                     {user.type}
                   </Tag>
                 </Td>
                 <Td>
                   {(user.groups || []).map((group, index) => (
-                    <Tag key={index} size={'md'} variant='solid' colorScheme='blue' mr='10px'>
+                    <Tag
+                      key={index}
+                      size={'md'}
+                      variant="solid"
+                      colorScheme="blue"
+                      mr="10px"
+                    >
                       {group}
                     </Tag>
                   ))}
@@ -62,17 +69,21 @@ const GroupSection: FC = () => {
                 <Td>{user.location}</Td>
                 <Td>
                   <Menu>
-                    <MenuButton className={classes.menuButton} as={IconButton}
-                      aria-label='actions'
-                      size='sm'
-                      variant='ghost'
-                      colorScheme='gray'
-                      icon={<FiMoreVertical/>}
+                    <MenuButton
+                      className={classes.menuButton}
+                      as={IconButton}
+                      aria-label="actions"
+                      size="sm"
+                      variant="ghost"
+                      colorScheme="gray"
+                      icon={<FiMoreVertical />}
                       isRound
                     />
                     <MenuList>
                       <MenuItem>Add to a Group</MenuItem>
-                      <MenuItem onClick={() => deleteUser(user.id)}>Delete</MenuItem>
+                      <MenuItem onClick={() => deleteUser(user.id)}>
+                        Delete
+                      </MenuItem>
                     </MenuList>
                   </Menu>
                 </Td>
