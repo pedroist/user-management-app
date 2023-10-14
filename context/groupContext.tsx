@@ -1,6 +1,7 @@
 import React, { FC, createContext, useContext, useState } from 'react'
 import { generateRandomId } from '../utils/utils'
 import { Group, GroupInput } from '../interfaces/group'
+import { useUsers } from './userContext'
 
 interface GroupContextProps {
   groups: Group[]
@@ -25,14 +26,17 @@ export const GroupProvider: FC<{ initialGroups: Group[] }> = ({
   initialGroups,
 }) => {
   const [groups, setGroups] = useState<Group[]>(initialGroups)
+  const { users, removeGroupFromUsers } = useUsers()
 
   const addGroup = (group: GroupInput) => {
     const id = generateRandomId()
     setGroups([...groups, { ...group, id }])
   }
 
-  const deleteGroup = (id: string) => {
-    setGroups(groups.filter((group) => group.id !== id))
+  const deleteGroup = (groupId: string) => {
+    setGroups(groups.filter((group) => group.id !== groupId))
+
+    removeGroupFromUsers(groupId)
   }
 
   return (

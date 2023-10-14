@@ -7,6 +7,7 @@ interface UserContextProps {
   initialUsers: User[]
   addUser: (user: UserInput) => void
   deleteUser: (id: string) => void
+  removeGroupFromUsers: (groupId: string) => void
 }
 
 const UserContext = createContext<UserContextProps | null>(null)
@@ -28,15 +29,26 @@ export const UserProvider: FC<{ initialUsers: User[] }> = ({
 
   const addUser = (user: UserInput) => {
     const id = generateRandomId()
-    setUsers([...users, { ...user, id, groups: [] }])
+    setUsers([...users, { ...user, id, groupIds: [] }])
   }
 
   const deleteUser = (id: string) => {
     setUsers(users.filter((user) => user.id !== id))
   }
 
+  const removeGroupFromUsers = (groupId: string) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) => ({
+        ...user,
+        groups: user.groupIds.filter((id) => id !== groupId),
+      }))
+    )
+  }
+
   return (
-    <UserContext.Provider value={{ users, initialUsers, addUser, deleteUser }}>
+    <UserContext.Provider
+      value={{ users, initialUsers, addUser, deleteUser, removeGroupFromUsers }}
+    >
       {children}
     </UserContext.Provider>
   )
