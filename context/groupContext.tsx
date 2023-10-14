@@ -1,43 +1,45 @@
 import React, { FC, createContext, useContext, useState } from 'react'
-import { User, UserInput } from '../interfaces/user'
 import { generateRandomId } from '../utils/utils'
+import { Group, GroupInput } from '../interfaces/group'
 
-interface UserContextProps {
-  users: User[]
-  initialUsers: User[]
-  addUser: (user: UserInput) => void
-  deleteUser: (id: string) => void
+interface GroupContextProps {
+  groups: Group[]
+  initialGroups: Group[]
+  addGroup: (user: GroupInput) => void
+  deleteGroup: (id: string) => void
 }
 
-const UserContext = createContext<UserContextProps | null>(null)
+const GroupContext = createContext<GroupContextProps | null>(null)
 
-// Hook to get users from context
-export const useUsers = () => {
-  const context = useContext(UserContext)
+// Hook to get groups from context
+export const useGroups = () => {
+  const context = useContext(GroupContext)
   if (!context) {
-    throw new Error('useUsers must be used within a UserProvider')
+    throw new Error('useGroups must be used within a GroupProvider')
   }
   return context
 }
 
-export const UserProvider: FC<{ initialUsers: User[] }> = ({
+export const GroupProvider: FC<{ initialGroups: Group[] }> = ({
   children,
-  initialUsers,
+  initialGroups,
 }) => {
-  const [users, setUsers] = useState<User[]>(initialUsers)
+  const [groups, setGroups] = useState<Group[]>(initialGroups)
 
-  const addUser = (user: UserInput) => {
+  const addGroup = (group: GroupInput) => {
     const id = generateRandomId()
-    setUsers([...users, { ...user, id, groups: [] }])
+    setGroups([...groups, { ...group, id }])
   }
 
-  const deleteUser = (id: string) => {
-    setUsers(users.filter((user) => user.id !== id))
+  const deleteGroup = (id: string) => {
+    setGroups(groups.filter((group) => group.id !== id))
   }
 
   return (
-    <UserContext.Provider value={{ users, initialUsers, addUser, deleteUser }}>
+    <GroupContext.Provider
+      value={{ groups, initialGroups, addGroup, deleteGroup }}
+    >
       {children}
-    </UserContext.Provider>
+    </GroupContext.Provider>
   )
 }
