@@ -19,7 +19,7 @@ import { FiMoreVertical } from 'react-icons/fi'
 import classes from './UserTable.module.scss'
 import { useUsers } from '../context/userContext'
 
-const GroupSection: FC = () => {
+const GroupDetail: FC = () => {
   const { users, deleteUser } = useUsers()
 
   return (
@@ -94,4 +94,4 @@ const GroupSection: FC = () => {
   )
 }
 
-export default GroupSection
+export default GroupDetail
