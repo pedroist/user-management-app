@@ -1,5 +1,5 @@
 import React, { FC, createContext, useContext, useState } from 'react'
-import { generateRandomId } from '../utils/utils'
+import { generateRandomId } from '../utils/generalUtils'
 import { Group, GroupInput } from '../interfaces/group'
 import { useUsers } from './userContext'
 

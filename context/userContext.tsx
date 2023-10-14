@@ -1,6 +1,6 @@
 import React, { FC, createContext, useContext, useState } from 'react'
 import { User, UserInput } from '../interfaces/user'
-import { generateRandomId } from '../utils/utils'
+import { generateRandomId } from '../utils/generalUtils'
 
 interface UserContextProps {
   users: User[]
