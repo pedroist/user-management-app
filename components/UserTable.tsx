@@ -23,10 +23,13 @@ import { FiMoreVertical } from 'react-icons/fi'
 import { AddUserModal } from './AddUserModal'
 import classes from './UserTable.module.scss'
 import { useUsers } from '../context/userContext'
+import { getGroupNameById } from '../utils/groupUtils'
+import { useGroups } from '../context/groupContext'
 
 const UserTable: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { users, addUser, deleteUser } = useUsers()
+  const { groups } = useGroups()
 
   const onSubmit = useCallback(
     async (userInput: UserInput) => {
@@ -78,17 +81,23 @@ const UserTable: FC = () => {
                   </Tag>
                 </Td>
                 <Td>
-                  {(user.groups || []).map((group, index) => (
-                    <Tag
-                      key={index}
-                      size={'md'}
-                      variant="solid"
-                      colorScheme="blue"
-                      mr="10px"
-                    >
-                      {group}
-                    </Tag>
-                  ))}
+                  {(user.groupIds || []).map((groupId, index) => {
+                    const group = getGroupNameById(groupId, groups)
+
+                    return (
+                      group !== null && (
+                        <Tag
+                          key={index}
+                          size={'md'}
+                          variant="solid"
+                          colorScheme="blue"
+                          mr="10px"
+                        >
+                          {group}
+                        </Tag>
+                      )
+                    )
+                  })}
                 </Td>
                 <Td>{user.age}</Td>
                 <Td>{user.location}</Td>

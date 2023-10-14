@@ -14,16 +14,29 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Heading,
 } from '@chakra-ui/react'
 import { FiMoreVertical } from 'react-icons/fi'
 import classes from './UserTable.module.scss'
 import { useUsers } from '../context/userContext'
+import { getUsersByGroupId } from '../utils/userUtils'
+import { getGroupNameById } from '../utils/groupUtils'
+import { useGroups } from '../context/groupContext'
 
-const GroupDetail: FC = () => {
+interface GroupDetailProps {
+  groupId: string
+}
+
+const GroupDetail: FC<GroupDetailProps> = ({ groupId }) => {
   const { users, deleteUser } = useUsers()
+  const { groups } = useGroups()
+  const usersByGroup = getUsersByGroupId(users, groupId)
+
+  const groupName = getGroupNameById(groupId, groups)
 
   return (
     <>
+      {groupName && <Heading as="h3">{groupName}</Heading>}
       <TableContainer>
         <Table variant="simple">
           <TableCaption>
@@ -41,7 +54,7 @@ const GroupDetail: FC = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {(users || []).map((user) => (
+            {(usersByGroup || []).map((user) => (
               <Tr key={user.id}>
                 <Td>{user.name}</Td>
                 <Td>{user.email}</Td>
@@ -51,17 +64,23 @@ const GroupDetail: FC = () => {
                   </Tag>
                 </Td>
                 <Td>
-                  {(user.groups || []).map((group, index) => (
-                    <Tag
-                      key={index}
-                      size={'md'}
-                      variant="solid"
-                      colorScheme="blue"
-                      mr="10px"
-                    >
-                      {group}
-                    </Tag>
-                  ))}
+                  {(user.groupIds || []).map((groupId, index) => {
+                    const group = getGroupNameById(groupId, groups)
+
+                    return (
+                      group !== null && (
+                        <Tag
+                          key={index}
+                          size={'md'}
+                          variant="solid"
+                          colorScheme="blue"
+                          mr="10px"
+                        >
+                          {group}
+                        </Tag>
+                      )
+                    )
+                  })}
                 </Td>
                 <Td>{user.age}</Td>
                 <Td>{user.location}</Td>

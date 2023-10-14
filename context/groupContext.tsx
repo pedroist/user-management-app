@@ -26,7 +26,7 @@ export const GroupProvider: FC<{ initialGroups: Group[] }> = ({
   initialGroups,
 }) => {
   const [groups, setGroups] = useState<Group[]>(initialGroups)
-  const { users, removeGroupFromUsers } = useUsers()
+  const { removeGroupFromUsers } = useUsers()
 
   const addGroup = (group: GroupInput) => {
     const id = generateRandomId()
