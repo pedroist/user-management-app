@@ -1,0 +1,13 @@
+.addGroupButton {
+  &:hover {
+    background: var(--chakra-colors-gray-700) !important;
+  }
+}
+
+.menuButton {
+  border-radius: 50%;
+
+  &:hover {
+    background: var(--chakra-colors-gray-100);
+  }
+}

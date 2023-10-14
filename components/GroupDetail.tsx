@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import {
   Table,
   Thead,
@@ -15,13 +15,18 @@ import {
   MenuItem,
   MenuList,
   Heading,
+  Button,
+  Flex,
+  useDisclosure,
 } from '@chakra-ui/react'
 import { FiMoreVertical } from 'react-icons/fi'
-import classes from './UserTable.module.scss'
+import classes from './GroupDetail.module.scss'
 import { useUsers } from '../context/userContext'
 import { getUsersByGroupId } from '../utils/userUtils'
 import { getGroupNameById } from '../utils/groupUtils'
 import { useGroups } from '../context/groupContext'
+import { AddUserModal } from './AddUserModal'
+import { GroupInput } from '../interfaces/group'
 
 interface GroupDetailProps {
   groupId: string
@@ -36,7 +41,12 @@ const GroupDetail: FC<GroupDetailProps> = ({ groupId }) => {
 
   return (
     <>
-      {groupName && <Heading as="h3">{groupName}</Heading>}
+      {groupName && (
+        <Heading as="h3" size={'md'}>
+          {groupName}
+        </Heading>
+      )}
+
       <TableContainer>
         <Table variant="simple">
           <TableCaption>
