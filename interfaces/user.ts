@@ -6,9 +6,9 @@ export interface User {
   name: string
   email: string
   type: string
-  groups: Group[]
+  groupIds: string[]
   age: number
   location: string
 }
 
-export type UserInput = Omit<User, 'id' | 'groups'>
+export type UserInput = Omit<User, 'id' | 'groupIds'>

@@ -1,3 +1,4 @@
+import { Group } from '../interfaces/group'
 import { User } from '../interfaces/user'
 
 /** Dummy user data. */
@@ -8,11 +9,7 @@ export const sampleUserData: User[] = [
     name: 'Pedro Castro',
     email: 'pedro.castro@gmail.com',
     type: 'Fullstack',
-    groups: [
-      { id: '1', name: 'Group 1' },
-      { id: '2', name: 'Group 2' },
-      { id: '3', name: 'Group 3' },
-    ],
+    groupIds: ['1', '2', '3'],
     age: 30,
     location: 'Barcelona, Spain',
   },
@@ -22,10 +19,7 @@ export const sampleUserData: User[] = [
     name: 'John Gonzalez',
     email: 'john.gonzalez@gmail.com',
     type: 'Frontend',
-    groups: [
-      { id: '2', name: 'Group 2' },
-      { id: '3', name: 'Group 3' },
-    ],
+    groupIds: ['2', '3'],
     age: 26,
     location: 'London, England',
   },
@@ -35,8 +29,14 @@ export const sampleUserData: User[] = [
     name: 'Anna Zimmer',
     email: 'anna.zimmer@gmail.com',
     type: 'Backend',
-    groups: [{ id: '3', name: 'Group 3' }],
+    groupIds: ['3'],
     age: 23,
     location: 'Berlin, Germany',
   },
+]
+
+export const sampleGroupData: Group[] = [
+  { id: '1', name: 'Group 1' },
+  { id: '2', name: 'Group 2' },
+  { id: '3', name: 'Group 3' },
 ]
