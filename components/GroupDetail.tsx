@@ -34,18 +34,32 @@ interface GroupDetailProps {
 
 const GroupDetail: FC<GroupDetailProps> = ({ groupId }) => {
   const { users, deleteUser } = useUsers()
-  const { groups } = useGroups()
+  const { groups, deleteGroup } = useGroups()
   const usersByGroup = getUsersByGroupId(users, groupId)
 
   const groupName = getGroupNameById(groupId, groups)
 
   return (
     <>
-      {groupName && (
-        <Heading as="h3" size={'md'}>
-          {groupName}
-        </Heading>
-      )}
+      <Flex
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        mb="40px"
+      >
+        {groupName && (
+          <Heading as="h3" size={'md'}>
+            {groupName}
+          </Heading>
+        )}
+        <Button
+          className={classes.addGroupButton}
+          bg="gray.50"
+          onClick={() => deleteGroup(groupId)}
+        >
+          Delete Group
+        </Button>
+      </Flex>
 
       <TableContainer>
         <Table variant="simple">
